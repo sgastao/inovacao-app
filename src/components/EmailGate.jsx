@@ -25,7 +25,7 @@ export default function EmailGate({ onComplete }) {
     <div className="text-center space-y-8 py-8 animate-in fade-in duration-500">
       <Brain className="w-20 h-20 text-indigo-600 mx-auto" />
       <div>
-        <h2 className="text-3xl font-bold mb-4">Evite a Obsolescência.</h2>
+        <h2 className="text-3xl font-bold mb-4">Avalie as suas competências em IA.</h2>
         <p className="text-slate-600 leading-relaxed max-w-md mx-auto">
           A Inteligência Artificial redefiniu a gestão do desporto. Este diagnóstico avalia o seu perfil
           perante cenários reais e gera um roteiro estratégico de renovação profissional.
