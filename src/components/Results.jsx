@@ -1,9 +1,12 @@
-import { CheckCircle2, Map, RefreshCw, ExternalLink, BookOpen } from 'lucide-react'
+import { useState } from 'react'
+import { CheckCircle2, Map, RefreshCw, ExternalLink, BookOpen, Clipboard, ClipboardCheck } from 'lucide-react'
 import { Radar, RadarChart, PolarGrid, PolarAngleAxis, PolarRadiusAxis, ResponsiveContainer } from 'recharts'
 
 const NOTEBOOK_LM = 'https://notebooklm.google.com/notebook/8c14d19d-7b79-44ee-af09-36ce2c1d4ec5'
 
 export default function Results({ skills, userProfile, onReset }) {
+  const [copied, setCopied] = useState(false)
+
   const radarData = [
     { subject: 'Conceptuais', A: skills.conceptual, fullMark: 5 },
     { subject: 'Avaliativas', A: skills.evaluative, fullMark: 5 },
@@ -11,6 +14,44 @@ export default function Results({ skills, userProfile, onReset }) {
     { subject: 'Relacionais', A: skills.relational, fullMark: 5 },
     { subject: 'Auto-Reflexão', A: skills.selfReflection, fullMark: 5 },
   ]
+
+  const promptText = `## O TEU PERFIL
+
+**Área de Atuação**: ${userProfile.context.name}
+**Nível de Carreira**: ${userProfile.level.title}
+
+### Diagnóstico de Competências IA (escala 1-5)
+- Competências Conceptuais: ${skills.conceptual}/5
+- Competências Avaliativas: ${skills.evaluative}/5
+- Implementação: ${skills.implementation}/5
+- Competências Relacionais: ${skills.relational}/5
+- Auto-Reflexão: ${skills.selfReflection}/5
+
+---
+
+## INSTRUÇÕES PARA O NOTEBOOKLM
+
+Age como um mentor pessoal de desenvolvimento profissional em IA para gestão do desporto.
+
+Tens acesso aos documentos e fontes carregados neste bloco de notas. Com base no meu perfil acima:
+
+1. **Analisa o meu perfil** — Identifica os meus pontos fortes e as minhas maiores lacunas de competência.
+
+2. **Prioridades de desenvolvimento** — Com base na minha área (${userProfile.context.name}) e nível (${userProfile.level.title}), quais são as 3 competências que devo desenvolver primeiro e porquê?
+
+3. **Plano de ação semanal** — Sugere-me atividades concretas, práticas e realistas para as próximas 2 a 4 semanas, usando os recursos disponíveis nos documentos do bloco de notas.
+
+4. **Cenário prático** — Cria um mini-desafio ou exercício adaptado ao meu contexto real (${userProfile.context.name}) e grau de responsabilidade (${userProfile.level.title}) que me force a aplicar as competências que mais preciso de treinar.
+
+5. **Métrica de progresso** — Como posso medir objetivamente se estou a evoluir em cada competência?
+
+Sê específico, prático e evita generalizações. Usa exemplos concretos do desporto. Sempre que possível, refere fontes específicas dos documentos disponíveis neste bloco de notas.`
+
+  const handleCopy = async () => {
+    await navigator.clipboard.writeText(promptText)
+    setCopied(true)
+    setTimeout(() => setCopied(false), 2000)
+  }
 
   return (
     <div className="space-y-8 animate-in zoom-in-95 duration-500">
@@ -96,6 +137,29 @@ export default function Results({ skills, userProfile, onReset }) {
             >
               Abrir Bloco de Notas <ExternalLink className="w-4 h-4" />
             </a>
+          </div>
+        </div>
+      </div>
+
+      <div className="bg-gradient-to-br from-slate-50 to-indigo-50 border border-slate-200 rounded-2xl p-6">
+        <div className="flex items-start gap-4">
+          <div className="bg-indigo-100 p-3 rounded-xl shrink-0">
+            {copied ? <ClipboardCheck className="w-6 h-6 text-green-600" /> : <Clipboard className="w-6 h-6 text-indigo-700" />}
+          </div>
+          <div className="flex-1 min-w-0">
+            <h3 className="font-bold text-lg text-slate-900">Prompt Personalizado para o NotebookLM</h3>
+            <p className="text-sm text-slate-500 mt-1 mb-4">
+              Copia este prompt e cola no chat do NotebookLM para obteres um plano de desenvolvimento adaptado ao teu perfil.
+            </p>
+            <pre className="bg-white border border-slate-200 rounded-xl p-4 text-xs text-slate-700 leading-relaxed whitespace-pre-wrap max-h-60 overflow-y-auto mb-4">
+              {promptText}
+            </pre>
+            <button
+              onClick={handleCopy}
+              className="inline-flex items-center gap-2 bg-slate-800 hover:bg-slate-900 text-white px-5 py-3 rounded-xl font-bold text-sm transition-all"
+            >
+              {copied ? <><ClipboardCheck className="w-4 h-4" /> Copiado!</> : <><Clipboard className="w-4 h-4" /> Copiar Prompt</>}
+            </button>
           </div>
         </div>
       </div>
