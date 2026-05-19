@@ -119,28 +119,6 @@ Sê específico, prático e evita generalizações. Usa exemplos concretos do de
         </div>
       </div>
 
-      <div className="bg-gradient-to-br from-indigo-50 to-purple-50 border border-indigo-100 rounded-2xl p-6">
-        <div className="flex items-start gap-4">
-          <div className="bg-indigo-100 p-3 rounded-xl shrink-0">
-            <BookOpen className="w-6 h-6 text-indigo-700" />
-          </div>
-          <div className="flex-1">
-            <h3 className="font-bold text-lg text-indigo-900">Bloco de Notas - Guia de Competências IA</h3>
-            <p className="text-sm text-slate-600 mt-1 mb-4">
-              Acede ao bloco de notas partilhado com guias, auxiliares e materiais de apoio para desenvolveres as tuas competências em IA na gestão do desporto.
-            </p>
-            <a
-              href={NOTEBOOK_LM}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="inline-flex items-center gap-2 bg-indigo-600 hover:bg-indigo-700 text-white px-5 py-3 rounded-xl font-bold text-sm transition-all"
-            >
-              Abrir Bloco de Notas <ExternalLink className="w-4 h-4" />
-            </a>
-          </div>
-        </div>
-      </div>
-
       <div className="bg-gradient-to-br from-slate-50 to-indigo-50 border border-slate-200 rounded-2xl p-6">
         <div className="flex items-start gap-4">
           <div className="bg-indigo-100 p-3 rounded-xl shrink-0">
@@ -160,6 +138,28 @@ Sê específico, prático e evita generalizações. Usa exemplos concretos do de
             >
               {copied ? <><ClipboardCheck className="w-4 h-4" /> Copiado!</> : <><Clipboard className="w-4 h-4" /> Copiar Prompt</>}
             </button>
+          </div>
+        </div>
+      </div>
+
+      <div className="bg-gradient-to-br from-indigo-50 to-purple-50 border border-indigo-100 rounded-2xl p-6">
+        <div className="flex items-start gap-4">
+          <div className="bg-indigo-100 p-3 rounded-xl shrink-0">
+            <BookOpen className="w-6 h-6 text-indigo-700" />
+          </div>
+          <div className="flex-1">
+            <h3 className="font-bold text-lg text-indigo-900">Bloco de Notas - Guia de Competências IA</h3>
+            <p className="text-sm text-slate-600 mt-1 mb-4">
+              Acede ao bloco de notas partilhado com guias, auxiliares e materiais de apoio para desenvolveres as tuas competências em IA na gestão do desporto.
+            </p>
+            <a
+              href={NOTEBOOK_LM}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center gap-2 bg-indigo-600 hover:bg-indigo-700 text-white px-5 py-3 rounded-xl font-bold text-sm transition-all"
+            >
+              Abrir Bloco de Notas <ExternalLink className="w-4 h-4" />
+            </a>
           </div>
         </div>
       </div>
