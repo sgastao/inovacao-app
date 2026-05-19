@@ -2,7 +2,7 @@ import { useState } from 'react'
 import { CheckCircle2, Map, RefreshCw, ExternalLink, BookOpen, Clipboard, ClipboardCheck } from 'lucide-react'
 import { Radar, RadarChart, PolarGrid, PolarAngleAxis, PolarRadiusAxis, ResponsiveContainer } from 'recharts'
 
-const NOTEBOOK_LM = 'https://notebooklm.google.com/notebook/8c14d19d-7b79-44ee-af09-36ce2c1d4ec5?authuser=1'
+const NOTEBOOK_LM = 'https://notebooklm.google.com/notebook/8c14d19d-7b79-44ee-af09-36ce2c1d4ec5/'
 
 export default function Results({ skills, userProfile, onReset }) {
   const [copied, setCopied] = useState(false)
